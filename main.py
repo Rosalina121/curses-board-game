@@ -149,9 +149,9 @@ def roll_dice(roll_window):
         roll_window.addstr(4, 2, "┃ •     ┃")
 
     def print_three():
-        roll_window.addstr(2, 2, "┃     • ┃")
+        roll_window.addstr(2, 2, "┃ •     ┃")
         roll_window.addstr(3, 2, "┃   •   ┃")
-        roll_window.addstr(4, 2, "┃ •     ┃")
+        roll_window.addstr(4, 2, "┃     • ┃")
 
     def print_four():
         roll_window.addstr(2, 2, "┃ •   • ┃")
