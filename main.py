@@ -33,14 +33,13 @@ def main():
     parser.add_argument(
         "-n", "--nerd-font", help="Enable Nerd Font", action="store_true"
     )
-    parser.add_argument("--foo", help="foo help")
+    parser.add_argument("-p", "--players", help="Number of players. Ignored when -c is present. Max 5", type=int)
     args = parser.parse_args()
 
     # setup curses
     stdscr = None
     rows, cols = 0, 0
     # nerdfont?
-    nerd_font = args.nerd_font
     char = Characters(nerd_font=args.nerd_font)
     # game stuctures
     # board array of board_field, size is 27
@@ -50,9 +49,16 @@ def main():
     players = list()
     player_symbols = []
     if args.custom:
+        if len(args.custom) != len(char.default_players()):
+            raise Exception("Player count cannot exceed {}".format(len(char.default_players())))
         player_symbols = args.custom
     else:
-        player_symbols = char.default_players()
+        if args.players:
+            if args.players > len(char.default_players()):
+                raise Exception("Too many players, max is {}".format(len(char.default_players())))
+            player_symbols = char.default_players()[: args.players]
+        else:
+            player_symbols = char.default_players()[:4]
     for symbol in player_symbols:
         players.append(Player(symbol, field=0))
 

@@ -4,9 +4,9 @@ class Characters:
     
     def default_players(self):
         if self.nerd_font:
-            return ["", "󰄛", "", ""]
+            return ["", "󰄛", "", "", ""]
         else:
-            return ["$", "#", "@", "%"]
+            return ["$", "#", "@", "%", "&"]
     def current_player(self):
         if self.nerd_font:
             return ""
