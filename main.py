@@ -10,6 +10,12 @@ from board_field import BoardField
 from player import Player
 
 
+# TODO
+# current player
+# show current player oon the leaderboard
+# fill leaderboard with players from set
+# NerdFont mode
+# Custom players like -c "#@%"
 def main():
     ex = "Thanks for playing!"
 
