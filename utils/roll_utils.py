@@ -8,7 +8,7 @@ def draw_roll(stdscr, board_width, nerd_font):
     roll_window = window_utils.draw_window(stdscr, 10, 22, x=board_width, y=0)
 
     roll_window.addstr(0, 1, "┤")
-    roll_window.addstr(0, 2, "R", curses.A_REVERSE)
+    roll_window.addstr(0, 2, "R", curses.A_UNDERLINE)
     roll_window.addstr(0, 3, "oll├")
     if nerd_font:
         roll_window.addstr(1, 3, "┏━━━━━━━━━━━━━━┓")

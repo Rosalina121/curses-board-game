@@ -114,11 +114,11 @@ def main():
                 )
 
                 # do stuff with game
-                game_utils.draw_new_game(game_window, game)
-                game_window.addstr(2, 2, f"Wait...")
-                # TODO
-                time.sleep(2)
-                game_window.addstr(2, 2, f"Done!  ")
+                game_utils.draw_new_game(game_window, game, board_width, board_height, current_player)
+                # game_window.addstr(2, 2, f"Wait...")
+                # # TODO
+                # time.sleep(2)
+                # game_window.addstr(2, 2, f"Done!  ")
 
                 # next player
                 for player in players:

@@ -10,5 +10,5 @@ def draw_leaderboard(stdscr, rows, cols, board_width, players, current_char):
     return leaderboard_window
 
 def draw_leaderboard_scores(players, leaderboard_window, current_char):
-    for player, p in zip(sorted(players, key=attrgetter("points"), reverse=True), range(len(players))):
+    for player, p in zip(players, range(len(players))):
         leaderboard_window.addstr(2+p, 2, f"{current_char if player.current else ' '} {player.character} - {player.points}")

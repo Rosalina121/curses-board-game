@@ -14,7 +14,7 @@ def draw_board_play(board_array, board_window, unknown_char):
         board_window.addstr(3 + 4, (i * 2) + 2, unknown_char if board_array[i].game is None else board_array[i].game)
 
 def draw_board_players(players, board_window):
-    window_utils.clear_rectangle(board_window, 2, 3, 27*2, 6)
+    window_utils.clear_rectangle(board_window, 2, 2, 27*2, 6)
     players_on_fields = {i: [] for i in range(27)}
     
     # Populate the dictionary with players
@@ -33,7 +33,8 @@ def move_player(players, board_window, player, board_array, amount, unknown_char
     return drawn_game
 
 def draw_random_game(board_array, board_window, field, unknown_char):
-    games = ["M", "J", "1"]
+    # games = ["M", "J", "1"]
+    games = ["M"]
     if board_array[field].game is None:
         board_array[field].game = games[randrange(len(games))]
         draw_board_play(board_array, board_window, unknown_char)
