@@ -171,18 +171,17 @@ def roll_dice(roll_window):
     # get random between 1 and 6
     result = randrange(1, 6)
 
-    print_one()
-    time.sleep(0.1)
-    print_two()
-    time.sleep(0.2)
-    print_three()
-    time.sleep(0.3)
-    print_four()
-    time.sleep(0.1)
-    print_five()
-    time.sleep(0.3)
-    print_six()
-    time.sleep(0.2)
+    dice_prints = [
+        print_one,
+        print_two,
+        print_three,
+        print_four,
+        print_five,
+        print_six
+    ]
+    for rolls in range(13):
+        dice_prints[randrange(0, 6)]()
+        time.sleep(0.02 * rolls)
 
     match result:
         case 1:
