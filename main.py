@@ -1,5 +1,7 @@
 import curses
+import curses.panel
 from random import randrange
+import time
 
 
 
@@ -9,7 +11,7 @@ from enitites.player import Player
 import utils.board_utils as board_utils
 import utils.loeaderboard_utils as leaderboard_utils
 import utils.roll_utils as roll_utils
-
+import utils.window_utils as window_utils
 
 
 # TODO
@@ -27,7 +29,7 @@ def main():
 
     # game stuctures
     # board array of board_field, size is 27
-    board_array = [BoardField("O", set()) for _ in range(27)]
+    board_array = [BoardField() for _ in range(27)]
 
     # players
     players = list()
@@ -36,7 +38,7 @@ def main():
         players.append(Player(symbol, field=0))
 
     # set random player current = True
-    players[randrange(len(players))].current = True
+    players[0].current = True
     
 
     try:
@@ -61,7 +63,21 @@ def main():
         while True:
             key = stdscr.getch()
             if key == ord("r"):
-                roll_utils.roll_dice(roll_window)
+                # perform turn
+                roll = roll_utils.roll_dice(roll_window)
+                current_player = next((player for player in players if player.current), None)
+                game = board_utils.move_player(players, board_window, current_player, board_array, roll)
+                
+                # next player
+                for player in players:
+                    player.current = False
+                players[(players.index(current_player) + 1) % len(players)].current = True
+                leaderboard_utils.draw_leaderboard_scores(players, leaderboard_window)
+                
+                # do stuff with game
+                board_window.addstr(17, 5, f"Game: {game}")
+
+
             elif key == ord("q"):
                 break
             elif key == curses.KEY_MOUSE:

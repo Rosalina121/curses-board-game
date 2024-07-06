@@ -79,3 +79,5 @@ def roll_dice(roll_window):
             print_five()
         case 6:
             print_six()
+
+    return result
