@@ -73,6 +73,10 @@ def main():
         rows, cols = stdscr.getmaxyx()
         if rows < 20 or cols < 100:
             raise Exception("Terminal must be at least 20x100")
+        if rows > 20:
+            rows = 20
+        if cols > 100:
+            cols = 100
 
         # setup windows
         # roll and leaderboard are 20 cols (22 with padding for border)

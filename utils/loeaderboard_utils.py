@@ -5,7 +5,7 @@ from operator import attrgetter
 def draw_leaderboard(stdscr, rows, cols, board_width, players, current_char):
     leaderboard_window = window_utils.draw_window(stdscr, rows - 10, 22, x=board_width, y=10)
 
-    leaderboard_window.addstr(0, 1, "┤Leaderboard├")
+    leaderboard_window.addstr(0, 1, "┤Wyniki├")
     draw_leaderboard_scores(players, leaderboard_window, current_char)
     return leaderboard_window
 
