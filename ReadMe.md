@@ -8,8 +8,8 @@ I'm working on a board game and decided to prototype it in curses rather than ca
 
 ## Run
 ```bash
-python3 -m venv venv
-source venv/bin/activate
+python3 -m venv env
+source env/bin/activate
 python3 main.py
 ```
 ### Options:

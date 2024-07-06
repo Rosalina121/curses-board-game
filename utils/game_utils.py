@@ -1,5 +1,8 @@
 import curses
+from random import randrange
 import time
+import yaml
+
 from . import window_utils
 
 
@@ -25,21 +28,30 @@ def draw_new_game(game_window, game, board_width, board_height, player):
 
 def draw_milionerzy(game_window, board_width, board_height, player):
     game_window.addstr(0, 1, "┤Game: Milionerzy├")
-
+    questions = None
+    with open("game_questions/milionerzy.yaml", "r") as stream:
+        try:
+            questions = yaml.safe_load(stream)
+        except yaml.YAMLError as exc:
+            print(exc)
     
-    question = "Czy matka wie, że ćpiesz?"
-    question_reward = 20000
-    ans_a = "Tak"
-    ans_b = "Nie"
-    ans_c = "Może"
-    ans_d = "Nie wiem"
-    correct_ans = "A"
+    random_question = questions[randrange(len(questions))]
+
+    question = random_question["question"]
+    question_reward = random_question["question_reward"]
+    ans_a = random_question["ans_a"]
+    ans_b = random_question["ans_b"]
+    ans_c = random_question["ans_c"]
+    ans_d = random_question["ans_d"]
+    correct_ans = random_question["correct_ans"]
 
     selected_ans = None
 
     bar_width = int(((board_width - 2) - len(question) - 4) / 2)
     reward_string = f"─ᐸ za {question_reward} ᐳ"
     reward_width = len(f"─ᐸ za {question_reward} ᐳ")
+
+    # TODO make it 2 lines to fit longer Qs
     question = reward_string + "─" * (bar_width-reward_width) + "ᐸ " + question + " ᐳ" + "─" * bar_width
 
     question_start_x = int((board_width - len(question)) / 2)
